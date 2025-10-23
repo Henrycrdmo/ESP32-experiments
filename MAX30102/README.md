@@ -1,4 +1,5 @@
 **CODE BY HENRIQUE MORAIS**
+====================
 This code was based on Gabriel Gardin's work, but it connects to BLE devices, using the ESP32 as a server and changes some functions to make it work.
 
 Base code: https://github.com/Gabriel-Gardin/max30102_esp32_oximeter/tree/master
