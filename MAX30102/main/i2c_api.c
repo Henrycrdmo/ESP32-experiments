@@ -1,6 +1,7 @@
 #include "i2c_api.h"
 #include "driver/i2c.h"
 #include "esp_log.h"
+#include "max30102_api.h"
 
 i2c_port_t i2c_port = 0;
 
@@ -26,6 +27,23 @@ esp_err_t i2c_init(void)
         ESP_LOGE(TAG, "i2c_driver_install failed: %d", err);
     }
     return err;
+}
+
+void read_max30102_fifo(int32_t *red_data, int32_t *ir_data)
+{
+	uint8_t un_temp[6];
+	uint8_t fifo_reg = REG_FIFO_DATA;
+
+    i2c_sensor_write(&fifo_reg, 1);
+
+    i2c_sensor_read(un_temp, 6);
+     *red_data += un_temp[0] << 16;
+     *red_data += un_temp[1] << 8;
+     *red_data += un_temp[2];
+
+     *ir_data += un_temp[3] << 16;
+     *ir_data += un_temp[4] << 8;
+     *ir_data += un_temp[5];
 }
 
 /* Address-aware read */

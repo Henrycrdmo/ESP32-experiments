@@ -25,4 +25,6 @@ esp_err_t i2c_sensor_write(uint8_t *data_wr, size_t size);
 esp_err_t i2c_sensor_read_addr(uint8_t dev_addr, uint8_t *data_rd, size_t size);
 esp_err_t i2c_sensor_write_addr(uint8_t dev_addr, uint8_t *data_wr, size_t size);
 
+void read_max30102_fifo(int32_t *red_data, int32_t *ir_data);
+
 #endif
